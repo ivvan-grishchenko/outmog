@@ -1,0 +1,19 @@
+packages:
+  - "apps/*"
+  - "packages/*"
+
+# pnpm 11 blocks dependency lifecycle scripts unless explicitly allowed here.
+# ssh2/cpu-features are dockerode's *optional* SSH bindings — we use the local
+# Docker engine, so they are deliberately disabled (no native toolchain needed).
+# lmdb/@parcel/watcher/msgpackr-extract are Angular CLI cache + file watchers.
+allowBuilds:
+  "@prisma/engines": true
+  "@parcel/watcher": true
+  "@swc/core": true
+  cpu-features: false
+  esbuild: true
+  lmdb: true
+  msgpackr-extract: true
+  prisma: true
+  protobufjs: true
+  ssh2: false

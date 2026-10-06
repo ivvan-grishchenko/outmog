@@ -1,0 +1,21 @@
+<main class="stage">
+  <header class="brand">
+    <h1>Arena</h1>
+    <p class="tagline">walking skeleton</p>
+  </header>
+
+  <section class="card" aria-live="polite">
+    <span [class]="card().dotClass"></span>
+    <h2>{{ card().headline }}</h2>
+    @if (card().detail; as detail) {
+      <p class="detail">{{ detail }}</p>
+    }
+    @if (card().hint; as hint) {
+      <p class="hint">{{ hint }}</p>
+    }
+  </section>
+
+  <p class="route">
+    via <code>{{ healthPath }}</code>
+  </p>
+</main>

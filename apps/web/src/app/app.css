@@ -1,0 +1,98 @@
+:host {
+  display: block;
+}
+
+.stage {
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1.5rem;
+  padding: 2rem 1rem;
+}
+
+.brand {
+  text-align: center;
+}
+
+.brand h1 {
+  margin: 0;
+  font-size: 2.5rem;
+  letter-spacing: 0.35rem;
+  text-transform: uppercase;
+  background: linear-gradient(90deg, #a78bfa, #22d3ee);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.tagline {
+  margin: 0.25rem 0 0;
+  color: #8b8fa3;
+  font-size: 0.85rem;
+  letter-spacing: 0.2rem;
+  text-transform: uppercase;
+}
+
+.card {
+  width: min(100%, 26rem);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 2rem 1.5rem;
+  border-radius: 1rem;
+  border: 1px solid rgba(167, 139, 250, 0.35);
+  background: rgba(255, 255, 255, 0.04);
+  box-shadow: 0 0 24px rgba(34, 211, 238, 0.08);
+  text-align: center;
+}
+
+.card h2 {
+  margin: 0;
+  font-size: 1.25rem;
+}
+
+.detail {
+  margin: 0;
+  color: #c3c7d9;
+  font-size: 0.9rem;
+}
+
+.hint {
+  margin: 0;
+  color: #8b8fa3;
+  font-size: 0.8rem;
+}
+
+.route {
+  margin: 0;
+  color: #565b70;
+  font-size: 0.75rem;
+}
+
+.dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+}
+
+.dot--idle {
+  background: #8b8fa3;
+}
+
+.dot--up {
+  background: #34d399;
+  box-shadow: 0 0 12px #34d399;
+}
+
+.dot--warn {
+  background: #fbbf24;
+  box-shadow: 0 0 12px #fbbf24;
+}
+
+.dot--down {
+  background: #f87171;
+  box-shadow: 0 0 12px #f87171;
+}
