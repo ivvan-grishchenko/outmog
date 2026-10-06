@@ -128,7 +128,7 @@ importers:
         specifier: ^3.8.1
         version: 3.9.9
       typescript:
-        specifier: ~6.0.2
+        specifier: ~6.0.3
         version: 6.0.3
 
   packages/scoring:

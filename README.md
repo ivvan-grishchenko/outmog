@@ -33,15 +33,17 @@ Open http://localhost:4200 — the page shows the API health (served from
 
 ### Local development database
 
-`apps/api` needs a PostgreSQL to run outside of tests. One container is enough:
+`apps/api` needs a PostgreSQL to run outside of tests:
 
 ```sh
-docker run --name outmog-pg -e POSTGRES_PASSWORD=postgres -e POSTGRES_DB=outmog -p 5432:5432 -d postgres:17-alpine
-copy apps\api\.env.example apps\api\.env
+pnpm db:up                              # starts/creates the outmog-pg container
+copy apps\api\.env.example apps\api\.env   # Windows
+cp apps/api/.env.example apps/api/.env     # POSIX
 ```
 
 (The e2e tests do **not** use this database — they boot their own throwaway
-container per run and migrate it from scratch.)
+container per run and migrate it from scratch. `pnpm verify` therefore works
+before you ever create `.env`.)
 
 ## Testing
 
@@ -61,6 +63,7 @@ pay for container boot + migrations (a few seconds). E2E files run serially
 | Command | What it does |
 | ------- | ------------ |
 | `pnpm dev` | Runs API (watch) + web dev server via turbo |
+| `pnpm db:up` | Start (or create) the local dev PostgreSQL container |
 | `pnpm build` | Builds all packages and apps |
 | `pnpm test` / `pnpm test:e2e` | Unit tests / API e2e tests |
 | `pnpm typecheck` | Type-checks every workspace |

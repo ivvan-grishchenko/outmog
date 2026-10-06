@@ -12,7 +12,11 @@ export class HealthController {
   async getHealth(): Promise<HealthResponse> {
     let db: HealthResponse["db"] = "up";
     try {
-      await this.prisma.$queryRaw`SELECT 1`;
+      // Probes the migrated schema (not just SELECT 1), so db:"up" proves the
+      // boot → migrate legs of the e2e seam. HTTP stays 200 even when db is
+      // down: status:"ok" is liveness, db carries readiness — the e2e test
+      // asserts db:"up" explicitly.
+      await this.prisma.appMeta.count();
     } catch {
       db = "down";
     }

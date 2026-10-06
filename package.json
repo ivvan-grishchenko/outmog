@@ -3,10 +3,11 @@
   "private": true,
   "packageManager": "pnpm@11.1.2",
   "engines": {
-    "node": ">=24"
+    "node": ">=24.15"
   },
   "scripts": {
     "dev": "turbo run dev",
+    "db:up": "docker start outmog-pg || docker run --name outmog-pg -e POSTGRES_PASSWORD=postgres -e POSTGRES_DB=outmog -p 5432:5432 -d postgres:17-alpine",
     "build": "turbo run build",
     "test": "turbo run test",
     "test:e2e": "turbo run test:e2e",
