@@ -80,11 +80,15 @@ pay for container boot + migrations (a few seconds). E2E files run serially
   Prettier settings). It deliberately skips Markdown/`docs/` (hand-authored
   prose) and `**/*.html` — oxfmt's plain-HTML parser is not Angular-template
   aware and mangles control-flow blocks.
-- **TypeScript:** root, `packages/shared`, `packages/scoring` are on TS 7. The
-  apps stay on TS 6.0.x until their tooling catches up: Angular 22's
-  `compiler-cli` peer range is `>=6.0 <6.1`, and `@nestjs/cli`'s `nest build`
-  needs the programmatic compiler API that TS 7.0 doesn't ship yet (expected
-  back in 7.1). Revisit both when they release.
+- **Builds:** `apps/api` uses Nest's SWC builder (`apps/api/nest-cli.json`) —
+  fast transpile, with decorator metadata preserved for Nest DI; type checking
+  stays a separate `tsc --noEmit` task.
+- **TypeScript:** root, `packages/shared`, `packages/scoring` are on TS 7.
+  `apps/api` stays on TS 6.0.x — `@nestjs/cli` reads the tsconfig through the
+  TypeScript programmatic API on every `nest build`/`nest start`, and TS 7.0
+  ships only the `tsc` executable (the API returns in 7.1, per Nest's own error
+  message), so no builder choice avoids it. `apps/web` stays on TS 6.0.x
+  because Angular 22's `compiler-cli` peer range is `>=6.0 <6.1`.
 
 ## Working agreements
 
