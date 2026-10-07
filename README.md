@@ -69,7 +69,19 @@ pay for container boot + migrations (a few seconds). E2E files run serially
 | `pnpm format` / `pnpm format:check` | Oxfmt write / check |
 | `pnpm test` / `pnpm test:e2e` | Unit tests / API e2e tests |
 | `pnpm typecheck` | Type-checks every workspace |
-| `pnpm verify` | All of the above, in order — the pre-push gate |
+| `pnpm verify` | All of the above, in order — the full CI check |
+
+## Git hooks & CI
+
+- **`pre-commit`** — husky + lint-staged lint and format just the staged files.
+- **`commit-msg`** — husky + commitlint enforce
+  [Conventional Commits](https://www.conventionalcommits.org/) (config in
+  `commitlint.config.mjs`).
+- **GitHub Actions** (`.github/workflows/ci.yml`) runs on every pull request:
+  a `commitlint` job that validates each commit in the PR, and a `verify` job
+  that runs `pnpm verify` (including the Docker-backed API e2e seam).
+
+`husky` is installed by the root `prepare` script on `pnpm install`.
 
 ## Tooling
 

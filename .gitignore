@@ -143,3 +143,6 @@ apps/api/src/generated/
 # OpenChamber session artifacts (screenshots etc.)
 .openchamber/
 
+# husky (generated hooks runtime)
+.husky/_
+
