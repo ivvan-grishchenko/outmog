@@ -1,0 +1,17 @@
+generator client {
+  provider = "prisma-client"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+/// Placeholder table so the walking skeleton has a real migration to run
+/// (boot → migrate → hit endpoint → assert). Domain tables — Metric Rows,
+/// Duels, Votes, … — arrive with their own tickets.
+model AppMeta {
+  id    Int    @id @default(autoincrement())
+  key   String @unique
+  value String
+}

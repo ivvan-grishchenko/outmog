@@ -1,0 +1,41 @@
+{
+  "name": "outmog",
+  "private": true,
+  "packageManager": "pnpm@11.1.2",
+  "engines": {
+    "node": ">=24.15"
+  },
+  "scripts": {
+    "prepare": "husky",
+    "dev": "turbo run dev",
+    "db:up": "docker start outmog-pg || docker run --name outmog-pg -e POSTGRES_PASSWORD=postgres -e POSTGRES_DB=outmog -p 5432:5432 -d postgres:17-alpine",
+    "build": "turbo run build",
+    "lint": "oxlint .",
+    "lint:fix": "oxlint . --fix",
+    "format": "oxfmt .",
+    "format:check": "oxfmt --check .",
+    "test": "turbo run test",
+    "test:e2e": "turbo run test:e2e",
+    "typecheck": "turbo run typecheck",
+    "verify": "pnpm run lint && pnpm run format:check && pnpm run typecheck && pnpm run build && pnpm run test && pnpm run test:e2e"
+  },
+  "devDependencies": {
+    "@commitlint/cli": "^21.2.3",
+    "@commitlint/config-conventional": "^21.2.3",
+    "husky": "^9.1.7",
+    "lint-staged": "^17.6.0",
+    "oxfmt": "^0.72.0",
+    "oxlint": "^1.87.0",
+    "turbo": "^2.11.7",
+    "typescript": "^7.0.2"
+  },
+  "lint-staged": {
+    "*.{js,mjs,cjs,ts,tsx}": [
+      "oxlint --fix",
+      "oxfmt"
+    ],
+    "*.{json,jsonc}": [
+      "oxfmt"
+    ]
+  }
+}
