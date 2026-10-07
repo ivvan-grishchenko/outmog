@@ -11,7 +11,7 @@
  * ADR-007). Every Metric Row and Scan Result records the Formula Version that
  * produced it. Bumped only by a deliberate formula release.
  */
-export const FORMULA_VERSION = "v0-skeleton";
+export const FORMULA_VERSION = 'v0-skeleton';
 
 /**
  * Placeholder stat aggregation: the arithmetic mean of a stat's Metric values,

@@ -24,7 +24,7 @@ packages/
 
 ```sh
 pnpm install
-pnpm verify     # typecheck + build + unit tests + API e2e tests (green)
+pnpm verify     # lint + format + typecheck + build + unit + API e2e (green)
 pnpm dev        # API on http://localhost:3000, web on http://localhost:4200
 ```
 
@@ -65,9 +65,26 @@ pay for container boot + migrations (a few seconds). E2E files run serially
 | `pnpm dev` | Runs API (watch) + web dev server via turbo |
 | `pnpm db:up` | Start (or create) the local dev PostgreSQL container |
 | `pnpm build` | Builds all packages and apps |
+| `pnpm lint` / `pnpm lint:fix` | Oxlint across the repo / with autofixes |
+| `pnpm format` / `pnpm format:check` | Oxfmt write / check |
 | `pnpm test` / `pnpm test:e2e` | Unit tests / API e2e tests |
 | `pnpm typecheck` | Type-checks every workspace |
 | `pnpm verify` | All of the above, in order — the pre-push gate |
+
+## Tooling
+
+- **Lint:** `oxlint` (`.oxlintrc.json`). Categories `correctness` (error),
+  `suspicious` and `perf` (warn); `typescript`, `unicorn`, `oxc`, `import`,
+  `vitest` and `node` plugins.
+- **Format:** `oxfmt` (`.oxfmtrc.json`, migrated from the Angular scaffold's
+  Prettier settings). It deliberately skips Markdown/`docs/` (hand-authored
+  prose) and `**/*.html` — oxfmt's plain-HTML parser is not Angular-template
+  aware and mangles control-flow blocks.
+- **TypeScript:** root, `packages/shared`, `packages/scoring` are on TS 7. The
+  apps stay on TS 6.0.x until their tooling catches up: Angular 22's
+  `compiler-cli` peer range is `>=6.0 <6.1`, and `@nestjs/cli`'s `nest build`
+  needs the programmatic compiler API that TS 7.0 doesn't ship yet (expected
+  back in 7.1). Revisit both when they release.
 
 ## Working agreements
 

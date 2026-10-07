@@ -1,5 +1,5 @@
-import type { INestApplication } from "@nestjs/common";
-import { API_PREFIX } from "@outmog/shared";
+import type { INestApplication } from '@nestjs/common';
+import { API_PREFIX } from '@outmog/shared';
 
 /**
  * Cross-cutting HTTP configuration shared by the real bootstrap (src/main.ts)

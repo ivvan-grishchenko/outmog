@@ -1,0 +1,17 @@
+{
+  "plugins": ["typescript", "unicorn", "oxc", "import", "vitest", "node"],
+  "categories": {
+    "correctness": "error",
+    "suspicious": "warn",
+    "perf": "warn"
+  },
+  "env": {
+    "node": true,
+    "browser": true
+  },
+  "rules": {
+    "typescript/no-extraneous-class": ["warn", { "allowWithDecorator": true }],
+    "import/no-unassigned-import": ["warn", { "allow": ["reflect-metadata", "dotenv/config"] }]
+  },
+  "ignorePatterns": ["**/dist/**", "**/.angular/**", "**/.turbo/**", "apps/api/src/generated/**"]
+}

@@ -8,5 +8,11 @@
     "types": ["node"],
     "noEmit": true
   },
-  "include": ["src/**/*.ts", "test/**/*.ts", "test/**/*.mts", "prisma.config.ts", "vitest.config.e2e.mts"]
+  "include": [
+    "src/**/*.ts",
+    "test/**/*.ts",
+    "test/**/*.mts",
+    "prisma.config.ts",
+    "vitest.config.e2e.mts"
+  ]
 }

@@ -1,20 +1,20 @@
-import { Test } from "@nestjs/testing";
-import type { INestApplication } from "@nestjs/common";
-import type { Server } from "node:http";
-import type { AddressInfo } from "node:net";
-import { afterAll, beforeAll, describe, expect, it } from "vitest";
-import { FORMULA_VERSION } from "@outmog/scoring";
-import { HEALTH_PATH, type HealthResponse } from "@outmog/shared";
+import { Test } from '@nestjs/testing';
+import type { INestApplication } from '@nestjs/common';
+import type { Server } from 'node:http';
+import type { AddressInfo } from 'node:net';
+import { afterAll, beforeAll, describe, expect, it } from 'vitest';
+import { FORMULA_VERSION } from '@outmog/scoring';
+import { HEALTH_PATH, type HealthResponse } from '@outmog/shared';
 
-import { AppModule } from "../src/app.module";
-import { configureApp } from "../src/bootstrap";
+import { AppModule } from '../src/app.module';
+import { configureApp } from '../src/bootstrap';
 
 /**
  * Primary test seam (see BEN-64 "Testing Decisions"): real HTTP against a real
  * PostgreSQL. The database is an ephemeral container booted and migrated by
  * test/global-setup.mts before any test file runs.
  */
-describe("GET /api/health", () => {
+describe('GET /api/health', () => {
   let app: INestApplication;
   let baseUrl: string;
 
@@ -35,14 +35,14 @@ describe("GET /api/health", () => {
     await app?.close();
   });
 
-  it("boots against the migrated database and reports ok with the scoring formula version", async () => {
+  it('boots against the migrated database and reports ok with the scoring formula version', async () => {
     const response = await fetch(`${baseUrl}${HEALTH_PATH}`);
     expect(response.status).toBe(200);
 
     const body = (await response.json()) as HealthResponse;
     expect(body).toEqual<HealthResponse>({
-      status: "ok",
-      db: "up",
+      status: 'ok',
+      db: 'up',
       formulaVersion: FORMULA_VERSION,
     });
   });

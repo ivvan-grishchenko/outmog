@@ -36,6 +36,9 @@ explicit go-ahead before using them.
 
 - **`save_issue` is both create and update.** Pass `id` to update; omit it to create. On
   create, `team` is required (`"Benrasha"`); `project: "Outmog"` sets the project.
+- **`save_issue` sets status with `state`, not `status`.** An unrecognised key is ignored
+  *silently* — the call returns 200 with the old state untouched. Use
+  `state: "In Progress"` (name, id, or type).
 - **Use `addLabels`, never `labels`, for triage.** `labels` *replaces* the entire label
   set, so passing `labels: ["ready-for-agent"]` silently strips any existing `Bug` or
   `Feature` label. `addLabels` is append-only.
@@ -46,6 +49,9 @@ explicit go-ahead before using them.
   and applies partial edits atomically; each anchor must match the current content exactly
   once. Prefer it over re-sending a whole `description`, which risks clobbering edits made
   in the Linear UI.
+- **`save_comment` names its parent `issueId`, not `id`.** `id` means "update this
+  comment"; a bogus one fails with `Could not find referenced Comment`. `body` is
+  required, and replies to an existing thread take `parentId` instead of an entity field.
 - **Statuses are the seven team defaults**, resolvable by name or type via
   `list_issue_statuses({team: "Benrasha"})`: `Backlog` (backlog), `Todo` (unstarted),
   `In Progress` (started), `In Review` (started), `Done` (completed), `Canceled`

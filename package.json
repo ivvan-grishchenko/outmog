@@ -9,13 +9,19 @@
     "dev": "turbo run dev",
     "db:up": "docker start outmog-pg || docker run --name outmog-pg -e POSTGRES_PASSWORD=postgres -e POSTGRES_DB=outmog -p 5432:5432 -d postgres:17-alpine",
     "build": "turbo run build",
+    "lint": "oxlint .",
+    "lint:fix": "oxlint . --fix",
+    "format": "oxfmt .",
+    "format:check": "oxfmt --check .",
     "test": "turbo run test",
     "test:e2e": "turbo run test:e2e",
     "typecheck": "turbo run typecheck",
-    "verify": "pnpm run typecheck && pnpm run build && pnpm run test && pnpm run test:e2e"
+    "verify": "pnpm run lint && pnpm run format:check && pnpm run typecheck && pnpm run build && pnpm run test && pnpm run test:e2e"
   },
   "devDependencies": {
+    "oxfmt": "^0.72.0",
+    "oxlint": "^1.87.0",
     "turbo": "^2.11.7",
-    "typescript": "~6.0.3"
+    "typescript": "^7.0.2"
   }
 }
